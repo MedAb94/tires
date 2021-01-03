@@ -1,154 +1,112 @@
 <template>
-    <div class="bg-primary">
-        <div class="bg-primary">
-            <div class="container">
-                <div>
-                    <v-text-field
-                        :label="$t('home.search')"
-                        class="w-50 mx-auto"
-                        outlined
-                        color="white"
-                        filled
-                        background-color="white"
-                    />
-                </div>
-            </div>
+  <div>
+    <div class="gray">
+      <div class="container">
+        <div>
+          <v-text-field
+            :label="$t('home.search')"
+            class="w-50 mx-auto"
+            outlined
+            color="white"
+            filled
+            background-color="white"
+          />
         </div>
-        <slider></slider>
-        <div class="text-center container red--text">
-            <h1>{{$t('home.name')}}</h1>
-            <div class="waiter-area">
-                <div class="waiter-inner">
-                    <v-row align="center">
-                        <v-col cols="12" sm="12" md="4">
-                            <v-img
-                                :src="require('../assets/waiter.png')"
-                                class="my-3"
-                                contain
-                                height="350"
-                            />
-                        </v-col>
-                        <v-col cols="12" sm="12" md="8">
-                            <h1>{{$t('home.title')}}</h1>
-                        </v-col>
-                    </v-row>
-                </div>
-            </div>
-        </div>
-        <section>
-            <v-container v-for="categ in allCategories" :key="categ.id">
-                <div>
-                    <h1 class="red--text">{{categ.name}}</h1>
-                </div>
-
-                <div class="container0 py-3">
-                    <v-row class="w-75 mr-5 double-border" align="center" v-for="(product, index) in categ.products"
-                           :key="product.id">
-                        <v-col cols="12">
-                            <v-row>
-                                <v-col md="8" sm="12">
-                                    <h3 class="red--text">
-                                        {{product.name}}
-                                    </h3>
-                                    <p style="overflow: hidden">
-                                        {{product.description}}
-                                    </p>
-                                    <div class="font-weight-bold">${{product.price}}</div>
-                                </v-col>
-                                <v-col md="4" sm="12" class="pa-0">
-                                    <v-img
-                                        :src="product.image"
-                                        class="m-0 mr-md-2"
-                                        contain
-                                        max-height="150"
-                                    />
-                                </v-col>
-                            </v-row>
-                        </v-col>
-                    </v-row>
-                </div>
-            </v-container>
-            <mailbox></mailbox>
-        </section>
-
+      </div>
     </div>
+    <slider></slider>
+    <section class="my-8">
+      <div class="container-fluid">
+        <div class="row pb-3">
+          <div class="col-md-2  filter">
+            <h3 class="font-weight-bold">Tires</h3>
+            <div class="border-bottom border-dark">
+              <p class="filter-title">
+                <strong>14 inches</strong>
+              </p>
+              <div class="form-group">
+                <select
+                  multiple
+                  class="form-control"
+                  id="exampleFormControlSelect2"
+                >
+                  <option v-for="c in 4" :value="c" v-bind:key="c"
+                    >175/65 R14 (1)
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="border-bottom border-dark">
+              <p class="filter-title">
+                <strong>17 inches</strong>
+              </p>
+              <div class="form-group">
+                <select
+                  multiple
+                  class="form-control"
+                  id="exampleFormControlSelect2"
+                >
+                  <option v-for="c in 4" :value="c" v-bind:key="c"
+                    >175/65 R14 (1)
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-10 courses">
+            <v-container>
+              <v-row>
+                <v-col cols="12" md="6" v-for="item in 6">
+                  <v-card class="pa-5">
+                    <v-row>
+                      <v-col class="8">
+                      <p>
+                       Width: 00.00 <br />
+                        Height: 00.00 <br />
+                        Diameter: 00.00 <br />
+                      </p>
+                       Number of tires : 00
+                      </v-col>
+                      <v-col cols="4">
+                      <v-img src="../assets/logo.png"></v-img>
+                       </v-col>
+                    </v-row>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-container>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
-    import {mapGetters, mapActions} from 'vuex'
-    import Mailbox from "../components/Mailbox";
-    import Slider from "../components/Slider";
+import { mapGetters, mapActions } from "vuex";
+import Mailbox from "../components/Mailbox";
+import Slider from "../components/Slider";
 
-    export default {
-        name: "Home",
-        components: {Mailbox, Slider},
-
-        methods: {
-            ...mapActions(["fetchProducts", "fetchCategories"])
-        },
-        computed: {
-            ...mapGetters(["allProducts", "allCategories"]),
-        },
-        created() {
-            // this.fetchProducts()
-            // this.fetchCategories()
-        }
-    }
+export default {
+  name: "Home",
+  components: { Mailbox, Slider },
+};
 </script>
 
 <style scoped lang="scss">
-    .jumbotron {
-        height: 30vh;
-    }
+.jumbotron {
+  height: 30vh;
+}
 
-
-    .waiter-area {
-        border: 3px solid #64DD17;
-        border-radius: 20px;
-        padding: 2px;
-    }
-
-    .waiter-inner {
-        border: 3px solid #CDDC39;
-        border-radius: 20px
-    }
-
-
-    .container0 {
-        display: flex;
-        overflow-x: scroll;
-        overflow-y: hidden;
-        white-space: nowrap;
-
-        img {
-            margin-right: 15px;
-
-        }
-    }
-
-    .container0::-webkit-scrollbar {
-        display: none;
-    }
-
-    .double-border {
-        border: 3px solid #CDDC39;
-        border-radius: 10px;
-        position: relative;
-        margin: 0 auto;
-    }
-
-    .double-border:before {
-        background: none;
-        border-radius: 10px;
-        border: 3px solid #64DD17;
-        content: "";
-        display: block;
-        position: absolute;
-        top: 4px;
-        left: 4px;
-        right: 4px;
-        bottom: 4px;
-        pointer-events: none;
-    }
-
+.gray {
+  box-shadow: 0px 6px 5px 0px rgba(0, 0, 0, 0.2);
+}
+.filter {
+  border-radius: 0 5% 10% 0;
+  background: #eee;
+  border-right: 5px solid blue;
+  font-weight: 800 !important;
+}
 </style>

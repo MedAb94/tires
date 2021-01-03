@@ -1,5 +1,5 @@
 <template>
-    <section class="light-green accent-4 red--text mb-0 py-3">
+    <section class="dark white--text mb-0 py-3">
         <div class="container newsLetter">
             <h1 class="text-center">
                 {{$t('mailBox.stay')}}
@@ -8,11 +8,11 @@
             <form @submit.prevent="subscribe">
                 <div class="row">
                     <div class="col-12">
-                        <v-text-field outlined label="Email">
+                        <v-text-field outlined label="Email" color="white">
                             <v-btn
                                 slot="append"
                                 x-large
-                                class="bg-primary red--text"
+                                class="bg-primary white--text"
 
                             >
 
@@ -38,5 +38,8 @@
     .newsLetter .v-btn {
         margin-top: -14px;
         margin-right: -11px;
+    }
+        .v-text-field--outlined >>> fieldset {
+        border-color: white;
     }
 </style>

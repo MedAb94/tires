@@ -1,5 +1,5 @@
 <template>
-    <v-carousel>
+    <v-carousel show-arrows-on-hover>
         <v-carousel-item
             v-for="n in 3"
             :key="n"
@@ -14,7 +14,7 @@
                     justify="center"
                 >
                     <v-img
-                        :src="require('../assets/slide/1.jpg')"
+                        :src="require('../assets/slide/0.jpg')"
                         cover
                     />
                 </v-row>
